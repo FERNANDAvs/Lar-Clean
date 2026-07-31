@@ -330,34 +330,7 @@
 
 </head>
 <body>
-<div style="background:#5F8567; color:white; padding:15px; text-align:center; position:fixed; top:0; left:0; width:100%; z-index:999999; font-size:16px; box-sizing:border-box;">
-   📱 Clique em "Instalar" acima para adicionar à tela inicial
-   <button onclick="this.parentElement.style.display='none'" style="background:none; color:white; border:none; margin-left:15px; font-size:18px;">✕</button>
- </div>
- <script>
- let eventoInstalar = null;
- const barra = document.getElementById('barra-instalar');
- const botao = document.getElementById('btn-instalar');
- window.addEventListener('beforeinstallprompt', (e) => {
-   e.preventDefault();
-   eventoInstalar = e;
-   barra.style.display = 'block';
-   console.log('Evento de instalação capturado');
- });
- botao.addEventListener('click', async () => {
-   if (eventoInstalar) {
-     eventoInstalar.prompt();
-     const escolha = await eventoInstalar.userChoice;
-     eventoInstalar = null;
-   } else {
-     // Apenas mostra o caminho sem alerta pop-up
-     console.log('Clique nos 3 pontos ⋮ → Adicionar à tela inicial');
-   }
- });
- window.addEventListener('appinstalled', () => {
-   barra.style.display = 'none';
- });
- </script>
+
 
 
 <!-- O resto do seu site continua aqui -->
