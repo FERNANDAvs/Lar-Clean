@@ -329,36 +329,37 @@
 </style>
 </head>
 <body>
-
-<!-- ✅ COLE TODO ESSE CÓDIGO NOVO AQUI -->
-<div id="barra-instalar" style="background:#5F8567; color:white; padding:15px; text-align:center; position:fixed; top:0; left:0; width:100%; z-index:999999; margin:0; font-size:17px; box-sizing:border-box;">
-  📱 Gostou do site? Instale o aplicativo!
-  <button id="botao-instalar" style="background:white; color:#5F8567; border:none; padding:8px 16px; margin-left:15px; border-radius:4px; font-weight:bold; font-size:15px;">Instalar Agora</button>
-  <button onclick="this.parentElement.style.display='none'" style="background:none; color:white; border:none; margin-left:10px; font-size:18px;">✕</button>
-</div>
-
-<script>
-let promptInstalar;
-const barra = document.getElementById('barra-instalar');
-const botao = document.getElementById('botao-instalar');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  promptInstalar = e;
-  barra.style.display = 'block';
-});
-
-botao.addEventListener('click', async () => {
-  if (!promptInstalar) {
-    alert('Clique nos 3 pontos ⋮ do navegador → Adicionar à tela inicial');
-    return;
-  }
-  barra.style.display = 'none';
-  promptInstalar.prompt();
-  const resultado = await promptInstalar.userChoice;
-  promptInstalar = null;
-});
-</script>
+<div id="barra-instalar" style="background:#5F8567; color:white; padding:15px; text-align:center; position:fixed; top:0; left:0; width:100%; z-index:999999; font-size:16px; box-sizing:border-box;">
+   📱 Instalar aplicativo Lar Clean
+   <button id="btn-instalar" style="background:white; color:#5F8567; border:none; padding:8px 16px; margin-left:15px; border-radius:4px; font-weight:bold;">Instalar</button>
+   <button onclick="this.parentElement.style.display='none'" style="background:none; color:white; border:none; margin-left:10px; font-size:18px;">✕</button>
+ </div>
+ <script>
+ let eventoInstalar;
+ const barra = document.getElementById('barra-instalar');
+ const botao = document.getElementById('btn-instalar');
+ // Guarda o aviso de instalação quando o navegador permitir
+ window.addEventListener('beforeinstallprompt', (e) => {
+   e.preventDefault();
+   eventoInstalar = e;
+   barra.style.display = 'block';
+ });
+ // Abre a janela direta ao clicar
+ botao.addEventListener('click', async () => {
+   if (eventoInstalar) {
+     eventoInstalar.prompt(); // Abre a janela oficial
+     const escolha = await eventoInstalar.userChoice;
+     eventoInstalar = null;
+   } else {
+     // Se não abrir, mostra o caminho rápido
+     alert('Clique nos 3 pontos ⋮ → Adicionar à tela inicial');
+   }
+ });
+ // Esconde barra se já estiver instalado
+ window.addEventListener('appinstalled', () => {
+   barra.style.display = 'none';
+ });
+ </script>
 
 <!-- O resto do seu site continua aqui -->
   
