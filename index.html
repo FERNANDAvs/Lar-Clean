@@ -329,31 +329,10 @@
 </style>
 </head>
 <body>
- <!-- Aviso de instalação do app -->
-<div id="aviso-instalar" style="background:#5F8567; color:white; padding:12px; text-align:center; position:sticky; top:0; z-index:9999; display:none;">
-  📱 Acesse nosso site como aplicativo!
-  <button id="btn-instalar" style="background:white; color:#5F8567; border:none; padding:6px 12px; margin-left:10px; border-radius:4px; font-weight:bold;">Instalar App</button>
-  <button onclick="this.parentElement.style.display='none'" style="background:none; color:white; border:none; margin-left:10px;">✕</button>
+<div style="background:#5F8567; color:white; padding:14px; text-align:center; position:sticky; top:0; left:0; right:0; z-index:99999; font-size:16px;">
+  📱 Instalar aplicativo Lar Clean
+  <button onclick="this.parentElement.style.display='none'" style="background:white; color:#5F8567; border:none; padding:7px 14px; margin-left:12px; border-radius:4px; font-weight:bold;">Fechar</button>
 </div>
-
-<script>
-let promptInstalar;
-const aviso = document.getElementById('aviso-instalar');
-const btnInstalar = document.getElementById('btn-instalar');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  promptInstalar = e;
-  aviso.style.display = 'block'; // Mostra o aviso no topo
-});
-
-btnInstalar.addEventListener('click', async () => {
-  aviso.style.display = 'none';
-  promptInstalar.prompt();
-  const resultado = await promptInstalar.userChoice;
-  promptInstalar = null;
-});
-</script>
  
 
 <header>
